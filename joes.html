@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Joe's Hotdogs</title>
+</head>
+
+<body>
+	<div id="title" style="display: inline-block; width: 100px; text-decoration: underline;"></div>
+	<div id="quant" style="display: inline-block; width: 100px;text-align: right;text-decoration: underline;"></div>
+	<br/>
+	<div id="item1" style="display: inline-block; width: 100px;"></div>
+	<div id="q1" style="display: inline-block; width: 100px;text-align: right;"></div>
+	<br/>
+	<div id="item2" style="display: inline-block; width: 100px;"></div>
+	<div id="q2" style="display: inline-block; width: 100px;text-align: right;"></div>
+	<br/>
+	<div id="item3" style="display: inline-block; width: 100px;"></div>
+	<div id="q3" style="display: inline-block; width: 100px;text-align: right;"></div>
+	<br/>
+	<div id="discount" style="display: block; width: 200px;text-align: right;"></div>
+	<div id="tax" style="display: block; width: 200px; text-align: right;"></div>
+	<div id="total" style="display: block; width: 200px;text-align: right;"></div>
+	
+	<script language="javascript">
+		alert("Hi, welcome to Joe's!");
+		
+		var hotdog_q, fries_q, drink_q, discount=0, total;
+		
+		hotdog_q=parseInt(prompt("Enter quantity for hotdogs ($3.25 each):", "0"));
+		while (isNaN(hotdog_q)){
+			alert("Please enter a number.");
+			hotdog_q=parseInt(prompt("Enter quantity for hotdogs ($3.25 each):", "0"));
+		};
+		fries_q=parseInt(prompt("Enter quantity for fries ($2.00 each):", "0"));
+		while (isNaN(fries_q)){
+			alert("Please enter a number.");
+			fries_q=parseInt(prompt("Enter quantity for fries ($2.00 each):", "0"));
+		};
+		drink_q=parseInt(prompt("Enter quantity for drinks ($1.50 each):", "0"));
+		while (isNaN(drink_q)){
+			alert("Please enter a number.");
+			drink_q=parseInt(prompt("Enter quantity for drinks ($1.50 each):", "0"));
+		};
+		
+		subtotal= 3.25*hotdog_q + 2.00*fries_q + 1.50*drink_q;
+		
+		if (subtotal>=20){
+			alert("You got a 10% discount!");
+			discount = 0.10*subtotal;
+			total = 0.90*subtotal;
+		}
+		else{
+			total = subtotal;
+		};
+		
+		tax = 0.0625*total;
+		total *= 1.0625;
+		
+		discount = discount.toFixed(2);
+		tax = tax.toFixed(2);
+		total = total.toFixed(2);
+		
+		document.getElementById("title").innerHTML = "Item";
+		document.getElementById("quant").innerHTML = "Quantity";
+
+		if (hotdog_q > 0){
+			document.getElementById("item1").innerHTML = "hotdog";
+			document.getElementById("q1").innerHTML = hotdog_q;
+		}
+		
+		if (fries_q > 0){
+			document.getElementById("item2").innerHTML = "fries";
+			document.getElementById("q2").innerHTML = fries_q;
+		}
+		if (drink_q > 0){
+			document.getElementById("item3").innerHTML = "drink";
+			document.getElementById("q3").innerHTML = drink_q;
+		}
+		if (discount != 0){
+			document.getElementById("discount").innerHTML = "Discount: " + discount;
+		}
+		document.getElementById("tax").innerHTML = "Tax: " + tax;
+		document.getElementById("total").innerHTML = "Total: " + total;
+
+		document.write("Thank you!");
+		
+	</script>
+	
+</body>
+</html>
